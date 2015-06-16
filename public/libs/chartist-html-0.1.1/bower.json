@@ -1,0 +1,23 @@
+{
+  "name": "chartist-html",
+  "version": "0.1.1",
+  "homepage": "https://github.com/pickled-plugins/chartist-html",
+  "authors": [
+    "Peter Szerzo <szerzo.peter@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "chartist": "~0.8.0"
+  },
+  "devDependencies": {
+    "numeral": "~1.5.3"
+  }
+}

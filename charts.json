@@ -1,0 +1,102 @@
+[
+    {
+        "author": "Some person",
+        "text": "This is the first comment"
+    },
+    {
+        "author": "Someone else",
+        "text": "This is a *another* comment that has emphasis"
+    },
+    {
+        "author": "Another person",
+        "text": "This is a __third__ comment that is bold"
+    },
+    {
+        "author": "Author",
+        "text": "Comment text",
+        "chart": "Chart data shows up *here* with markdown"
+    },
+    {
+        "author": "jessica",
+        "text": "some comment",
+        "chart": "<div class='cts' data-type='line' data-series-format='currency' data-labels-format='year'><ul class='hidden'><li class='cts__labels'>1994|1995|1996</li><li class='cts__series' data-name='Federal'>3605|5475|4820</li><li class='cts__series' data-name='State'>2550|2905|3290</li></ul></div>"
+    },
+    {
+        "chart_type": "pie",
+        "chart_subtype": "stacked",
+        "data_labels_format": "Year",
+        "data_series_format": "U.S. State",
+        "chart_data": "1\t2\t3\n4\t5\t6",
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "chart_title": "",
+        "chart_type": "pie",
+        "chart_subtype": "stacked",
+        "data_labels_format": "Currency ($)",
+        "data_series_format": "U.S. State",
+        "chart_data": "1\t2\t3\n4\t5\t6",
+        "chart": "<p></p>"
+    },
+    {
+        "chart_type": "pie",
+        "chart_subtype": "stacked",
+        "data_labels_format": "Number",
+        "data_series_format": "Number",
+        "chart_data": "1\t2\t3\n4\t5\t6",
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "chart_title": "",
+        "chart_type": "pie",
+        "chart_subtype": "stacked",
+        "data_labels_format": "",
+        "data_series_format": "",
+        "chart_data": "1\t2\t3\n4\t5\t6",
+        "chart": "<p></p>"
+    },
+    {
+        "chart_type": "pie",
+        "chart_subtype": "stacked",
+        "data_labels_format": "Number",
+        "data_series_format": "Number",
+        "chart_data": "1\t2\t3\n4\t5\t6",
+        "chart": "<p></p>"
+    },
+    {
+        "chart_type": "pie",
+        "chart_subtype": "stacked",
+        "data_labels_format": "Number",
+        "data_series_format": "Number",
+        "chart_data": [
+            [
+                "1\t2\t3"
+            ],
+            [
+                "4\t5\t6"
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "chart_type": "pie",
+        "chart_subtype": "stacked",
+        "data_labels_format": "Number",
+        "data_series_format": "Number",
+        "chart_data": [
+            [
+                "1",
+                "2",
+                "3"
+            ],
+            [
+                "4",
+                "5",
+                "6"
+            ]
+        ],
+        "chart": "<p></p>"
+    }
+]

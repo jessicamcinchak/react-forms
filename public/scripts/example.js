@@ -82,9 +82,6 @@ var ChartList = React.createClass({displayName: "ChartList",
   render: function() {
     var chartNodes = this.props.data.map(function(chart, index) {
       return (
-        // `key` is a React-specific concept and is not mandatory for the
-        // purpose of this tutorial. if you're curious, see more here:
-        // http://facebook.github.io/react/docs/multiple-components.html#dynamic-children
         React.createElement(Chart, {key: index}, 
           chart
         )
@@ -98,70 +95,96 @@ var ChartList = React.createClass({displayName: "ChartList",
   }
 });
 
+var FormSelect = React.createClass({displayName: "FormSelect",
+  render: function() {
+    // console.log(this.props);
+    var optionsList = ['Number', 'Percent (%)', 'Currency ($)', 'Year', 'Month', 'U.S. State', 'None'].map(function(value) {
+      return (
+        React.createElement("option", null, 
+          value
+        )
+      );
+    });
+    return (
+      React.createElement("select", {id: this.props.id, name: this.props.name}, 
+        optionsList
+      )
+    );
+  }
+});
+
+var Input = React.createClass({displayName: "Input",
+  render: function() {
+    return (
+      React.createElement("div", {class: "chartForm__input"}, 
+        React.createElement("label", {for: this.props.id}, 
+          this.props['data-text']
+        ), 
+        React.createElement("input", {type: this.props.type, id: this.props.id, placeholder: this.props.placeholder, ref: this.props.id})
+      )
+    );
+  }
+});
+
+var formatters = {
+  'chart_data': function(data) {
+    return data.split('\n').map(function(x) { return x.split('\t'); });
+  }
+};
+
 var ChartForm = React.createClass({displayName: "ChartForm",
   handleSubmit: function(e) {
     e.preventDefault();
-    var author = React.findDOMNode(this.refs.author).value.trim();
-    var text = React.findDOMNode(this.refs.text).value.trim();
-    var chart = React.findDOMNode(this.refs.chart).value.trim();
-    if (!text || !author || !chart) {
-      return;
+    var key, value, obj = {};
+    for (key in this.refs) {
+      value = this.refs[key];
+      console.log(formatters[key]);
+      if (formatters[key]) {
+        obj[key] = formatters[key](React.findDOMNode(value).value);
+      } else {
+        obj[key] = React.findDOMNode(value).value;
+      }
+      React.findDOMNode(value).value = '';
     }
-    this.props.onChartSubmit({author: author, text: text, chart: chart});
-    React.findDOMNode(this.refs.author).value = '';
-    React.findDOMNode(this.refs.text).value = '';
-    React.findDOMNode(this.refs.chart).value = '';
+    console.log(obj);
+    this.props.onChartSubmit(obj);
   },
   render: function() {
     return (
       React.createElement("form", {className: "chartForm", onSubmit: this.handleSubmit}, 
 
-        React.createElement("label", {for: "author"}, "Author"), 
-        React.createElement("input", {type: "text", id: "author", placeholder: "your name here", ref: "author"}), 
-
-        React.createElement("label", {for: "chart-title"}, "Chart Title"), 
-        React.createElement("input", {type: "text", id: "chart-title", placeholder: "chart title here", ref: "chart_title"}), 
+        React.createElement(Input, {id: "author", type: "text", placeholder: "author name", "data-text": "Author", ref: "author"}), 
+        React.createElement(Input, {id: "chart-title", type: "text", placeholder: "chart title", "data-text": "Chart Title", ref: "chart_title"}), 
 
         React.createElement("fieldset", null, 
           React.createElement("legend", null, "Chart Type"), 
-            React.createElement("label", {for: "chart-type-button"}, "Bar"), 
+          React.createElement("div", null, 
             React.createElement("input", {type: "radio", id: "chart-type-button", name: "chart-type", value: "bar", ref: "chart_type"}), 
-            React.createElement("label", {for: "chart-type-button"}, "Line"), 
+            React.createElement("label", {for: "chart-type-button"}, "Bar"), 
+
             React.createElement("input", {type: "radio", id: "chart-type-button", name: "chart-type", value: "line", ref: "chart_type"}), 
-            React.createElement("label", {for: "chart-type-button"}, "Pie"), 
-            React.createElement("input", {type: "radio", id: "chart-type-button", name: "chart-type", value: "pie", ref: "chart_type"})
+            React.createElement("label", {for: "chart-type-button"}, "Line"), 
+
+            React.createElement("input", {type: "radio", id: "chart-type-button", name: "chart-type", value: "pie", ref: "chart_type"}), 
+            React.createElement("label", {for: "chart-type-button"}, "Pie")
+          )
         ), 
 
         React.createElement("fieldset", null, 
           React.createElement("legend", null, "Bar Chart Subtypes"), 
+            React.createElement("input", {type: "checkbox", id: "chart-subtype-button", name: "chart-subtype-1", value: "horizontal", ref: "chart_subtype_1"}), 
             React.createElement("label", {for: "chart-subtype-button"}, "Horizontal"), 
-            React.createElement("input", {type: "radio", id: "chart-subtype-button", name: "chart-subtype-1", value: "horizontal", ref: "chart_subtype"}), 
-            React.createElement("label", {for: "chart-subtype-button"}, "Stacked"), 
-            React.createElement("input", {type: "radio", id: "chart-subtype-button", name: "chart-subtype-2", value: "stacked", ref: "chart_subtype"})
+
+            React.createElement("input", {type: "checkbox", id: "chart-subtype-button", name: "chart-subtype-2", value: "stacked", ref: "chart_subtype_2"}), 
+            React.createElement("label", {for: "chart-subtype-button"}, "Stacked")
         ), 
 
         React.createElement("fieldset", null, 
           React.createElement("legend", null, "Data Format"), 
-            React.createElement("label", {for: "chart-labels-format"}, "Chart Labels"), 
-              React.createElement("select", {id: "data-labels-format", name: "data-labels-format"}, 
-                React.createElement("option", null, "Number"), 
-                React.createElement("option", null, "Percent (%)"), 
-                React.createElement("option", null, "Currency ($)"), 
-                React.createElement("option", null, "Year"), 
-                React.createElement("option", null, "Month"), 
-                React.createElement("option", null, "U.S. State"), 
-                React.createElement("option", null, "None")
-              ), 
-            React.createElement("label", {for: "chart-series-format"}, "Chart Series"), 
-              React.createElement("select", {id: "data-series-format", name: "data-series-format"}, 
-                React.createElement("option", null, "Number"), 
-                React.createElement("option", null, "Percent (%)"), 
-                React.createElement("option", null, "Currency ($)"), 
-                React.createElement("option", null, "Year"), 
-                React.createElement("option", null, "Month"), 
-                React.createElement("option", null, "U.S. State"), 
-                React.createElement("option", null, "None")
-              )
+            React.createElement("p", null, React.createElement("label", {for: "data-labels-format"}, "Chart Labels"), 
+            React.createElement(FormSelect, {id: "data-labels-format", name: "data-labels-format", ref: "data_labels_format"})), 
+            React.createElement("p", null, React.createElement("label", {for: "data-series-format"}, "Chart Series"), 
+            React.createElement(FormSelect, {id: "data-series-format", name: "data-series-format", ref: "data_series_format"}))
         ), 
 
         React.createElement("label", {for: "chart-data"}, "Chart Data - Paste from Excel"), 

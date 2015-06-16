@@ -97,7 +97,6 @@ var ChartList = React.createClass({
 
 var FormSelect = React.createClass({
   render: function() {
-    // console.log(this.props);
     var optionsList = ['Number', 'Percent (%)', 'Currency ($)', 'Year', 'Month', 'U.S. State', 'None'].map(function(value) {
       return (
         <option>
@@ -106,7 +105,7 @@ var FormSelect = React.createClass({
       );
     });
     return (
-      <select id={this.props.id} name={this.props.name}>
+      <select id={this.props.id} name={this.props.name} value={this.value} ref={this.props.id}>
         {optionsList}
       </select>
     );
@@ -126,6 +125,38 @@ var Input = React.createClass({
   }
 });
 
+var RadioButton = React.createClass({
+  render: function() {
+    var radioButtonList = [ 'bar', 'line', 'pie' ].map(function(value) {
+      // return (
+      //   {value}
+      // );
+    });
+    return (
+      <input type="radio" id={this.props.id} name={this.props.name} value={this.value} ref={this.props.id}>
+        {radioButtonList}
+      </input>
+    );
+  }
+});
+
+// var CheckBox = React.createClass({
+//   render: function() {
+//       return (
+//         <CheckBox 
+//           type="checkbox"
+//           name="subtypes"
+//           value={this.state.value}
+//           ref="subtypesGroup"
+//           onChange={this.handleChange}
+//         >
+//       );
+//   },
+//   handleChange: function() {
+//     var selectedSubtypes = this.refs.subtypesGroup.getCheckedValues();
+//   }
+// });
+
 var formatters = {
   'chart_data': function(data) {
     return data.split('\n').map(function(x) { return x.split('\t'); });
@@ -135,17 +166,15 @@ var formatters = {
 var ChartForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
-    console.log(this);
     var key, value, obj = {};
     for (key in this.refs) {
       value = this.refs[key];
-      console.log(formatters[key]);
+      // console.log(formatters[key]);
       if (formatters[key]) {
         obj[key] = formatters[key](React.findDOMNode(value).value);
       } else {
         obj[key] = React.findDOMNode(value).value;
       }
-      
       React.findDOMNode(value).value = '';
     }
     console.log(obj);
@@ -156,29 +185,30 @@ var ChartForm = React.createClass({
       <form className="chartForm" onSubmit={this.handleSubmit}>
 
         <Input id="author" type="text" placeholder="author name" data-text="Author" ref="author" />
-        <Input id="chart-title" type="text" placeholder="chart title" data-text="Chart Title" ref="chart_title" />
+        <Input id="chart_title" type="text" placeholder="chart title" data-text="Chart Title" />
 
         <fieldset>
           <legend>Chart Type</legend>
           <div>
-            <input type="radio" id="chart-type-button" name="chart-type" value="bar" ref="chart_type" />
+            <RadioButton id="chart-type-button" name="chart-type" value="bar" ref="chart_type" />
             <label for="chart-type-button">Bar</label>  
 
-            <input type="radio" id="chart-type-button" name="chart-type" value="line" ref="chart_type" />
+            <RadioButton id="chart-type-button" name="chart-type" value="line" ref="chart_type" />
             <label for="chart-type-button">Line</label>
 
-            <input type="radio" id="chart-type-button" name="chart-type" value="pie" ref="chart_type" />
+            <RadioButton id="chart-type-button" name="chart-type" value="pie" ref="chart_type" />
             <label for="chart-type-button">Pie</label>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Bar Chart Subtypes</legend>
-            <input type="checkbox" id="chart-subtype-button" name="chart-subtype-1" value="horizontal" ref="chart_subtype" />
+            <input type="checkbox" id="chart-subtype-button" name="chart-subtype-1" value="horizontal" ref="chart_subtype_1" />
             <label for="chart-subtype-button">Horizontal</label>
 
-            <input type="checkbox" id="chart-subtype-button" name="chart-subtype-2" value="stacked" ref="chart_subtype" />
+            <input type="checkbox" id="chart-subtype-button" name="chart-subtype-2" value="stacked" ref="chart_subtype_2" />
             <label for="chart-subtype-button">Stacked</label>
+
         </fieldset>
 
         <fieldset>

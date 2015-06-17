@@ -1,3 +1,8 @@
+// 'use strict';
+
+// var React = require('react');
+// var RadioGroup = require('react-radio-group');
+
 var Chart = React.createClass({
   componentDidMount: function() {
     var $el = $(this.getDOMNode()), $chart,
@@ -140,22 +145,24 @@ var RadioButton = React.createClass({
   }
 });
 
-// var CheckBox = React.createClass({
-//   render: function() {
-//       return (
-//         <CheckBox 
-//           type="checkbox"
-//           name="subtypes"
-//           value={this.state.value}
-//           ref="subtypesGroup"
-//           onChange={this.handleChange}
-//         >
-//       );
-//   },
-//   handleChange: function() {
-//     var selectedSubtypes = this.refs.subtypesGroup.getCheckedValues();
-//   }
-// });
+var CheckBoxList = React.createClass({
+  render: function() {
+    var id = this.props.id,
+      list = this.props.values.split(',').map(function(value) {
+      return (
+        <div>
+          <label>{value}</label>
+          <input type="checkbox" name={id} id={id} value={value}/>
+        </div>
+      );
+    });
+    return (
+      <div>
+        {list}
+      </div>
+    );
+  }
+});
 
 var formatters = {
   'chart_data': function(data) {
@@ -180,6 +187,18 @@ var ChartForm = React.createClass({
     console.log(obj);
     this.props.onChartSubmit(obj);
   },
+
+  // getInitialState: function() {
+  //   return {
+  //     selectedValue: 'bar',
+  //   };
+  // },
+  // handleChange: function(value) {
+  //   this.setState({
+  //     selectedValue: value,
+  //   });
+  // },
+
   render: function() {
     return (
       <form className="chartForm" onSubmit={this.handleSubmit}>
@@ -189,26 +208,23 @@ var ChartForm = React.createClass({
 
         <fieldset>
           <legend>Chart Type</legend>
-          <div>
-            <RadioButton id="chart-type-button" name="chart-type" value="bar" ref="chart_type" />
-            <label for="chart-type-button">Bar</label>  
-
-            <RadioButton id="chart-type-button" name="chart-type" value="line" ref="chart_type" />
-            <label for="chart-type-button">Line</label>
-
-            <RadioButton id="chart-type-button" name="chart-type" value="pie" ref="chart_type" />
-            <label for="chart-type-button">Pie</label>
-          </div>
+            <div>
+              <RadioButton id="chart-type-button" name="chart-type" value="bar" ref="chart_type" />
+              <label for="chart-type-button">Bar</label>
+              
+              <RadioButton id="chart-type-button" name="chart-type" value="line" ref="chart_type" />
+              <label for="chart-type-button">Line</label>
+              
+              <RadioButton id="chart-type-button" name="chart-type" value="pie" ref="chart_type" />
+              <label for="chart-type-button">Pie</label>
+            </div>
         </fieldset>
 
         <fieldset>
           <legend>Bar Chart Subtypes</legend>
-            <input type="checkbox" id="chart-subtype-button" name="chart-subtype-1" value="horizontal" ref="chart_subtype_1" />
-            <label for="chart-subtype-button">Horizontal</label>
-
-            <input type="checkbox" id="chart-subtype-button" name="chart-subtype-2" value="stacked" ref="chart_subtype_2" />
-            <label for="chart-subtype-button">Stacked</label>
-
+            <div>
+              <CheckBoxList values="horizontal,stacked" id="chart-subtype-button" ref="chart_subtypes"/>
+            </div>
         </fieldset>
 
         <fieldset>
@@ -232,3 +248,39 @@ React.render(
   <ChartBox url="charts.json" pollInterval={120000} />,
   document.getElementById('content')
 );
+
+//Set-up for node module react-radio-group, not working require not defined
+  // getInitialState: function() {
+  //   return {
+  //     selectedValue: 'bar',
+  //   };
+  // },
+  // handleChange: function(value) {
+  //   this.setState({
+  //     selectedValue: value,
+  //   });
+  // },
+
+        // <fieldset>
+        //   <legend>Chart Type</legend>
+        //   <div>
+        //     <RadioGroup
+        //       name="chart-type"
+        //       selectedValue={this.state.selectedValue}
+        //       onChange={this.handleChange}>
+        //       {Radio => (
+        //         <div>
+        //           <label>
+        //             <Radio value="bar" />Bar
+        //           </label>
+        //           <label>
+        //             <Radio value="line" />Line
+        //           </label>
+        //           <label>
+        //             <Radio value="pie" />Pie
+        //           </label>
+        //         </div>
+        //         )}
+        //       </RadioGroup>
+        //     </div>
+        // </fieldset>

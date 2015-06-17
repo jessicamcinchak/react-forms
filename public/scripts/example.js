@@ -1,3 +1,8 @@
+'use strict';
+
+var React = require('react');
+var RadioGroup = require('react-radio-group');
+
 var Chart = React.createClass({displayName: "Chart",
   componentDidMount: function() {
     var $el = $(this.getDOMNode()), $chart,
@@ -97,7 +102,6 @@ var ChartList = React.createClass({displayName: "ChartList",
 
 var FormSelect = React.createClass({displayName: "FormSelect",
   render: function() {
-    // console.log(this.props);
     var optionsList = ['Number', 'Percent (%)', 'Currency ($)', 'Year', 'Month', 'U.S. State', 'None'].map(function(value) {
       return (
         React.createElement("option", null, 
@@ -106,7 +110,7 @@ var FormSelect = React.createClass({displayName: "FormSelect",
       );
     });
     return (
-      React.createElement("select", {id: this.props.id, name: this.props.name}, 
+      React.createElement("select", {id: this.props.id, name: this.props.name, value: this.value, ref: this.props.id}, 
         optionsList
       )
     );
@@ -126,6 +130,36 @@ var Input = React.createClass({displayName: "Input",
   }
 });
 
+var RadioButton = React.createClass({displayName: "RadioButton",
+  render: function() {
+    var radioButtonList = [ 'bar', 'line', 'pie' ].map(function(value) {
+      // return (
+      //   {value}
+      // );
+    });
+    return (
+      React.createElement("input", {type: "radio", id: this.props.id, name: this.props.name, value: this.value, ref: this.props.id}, 
+        radioButtonList
+      )
+    );
+  }
+});
+
+var CheckBox = React.createClass({displayName: "CheckBox",
+  render: function() {
+    var checkBoxList = [ 'horizontal', 'stacked' ].map(function(value) {
+      // return (
+      //   {value}
+      // );
+    });
+    return (
+      React.createElement("input", {type: "checkbox", id: this.props.id, name: this.props.name, value: this.value, ref: this.props.id}, 
+        checkBoxList
+      )
+    );
+  }
+});
+
 var formatters = {
   'chart_data': function(data) {
     return data.split('\n').map(function(x) { return x.split('\t'); });
@@ -138,7 +172,7 @@ var ChartForm = React.createClass({displayName: "ChartForm",
     var key, value, obj = {};
     for (key in this.refs) {
       value = this.refs[key];
-      console.log(formatters[key]);
+      // console.log(formatters[key]);
       if (formatters[key]) {
         obj[key] = formatters[key](React.findDOMNode(value).value);
       } else {
@@ -149,34 +183,71 @@ var ChartForm = React.createClass({displayName: "ChartForm",
     console.log(obj);
     this.props.onChartSubmit(obj);
   },
+  // getInitialState: function() {
+  //   return {
+  //     selectedValue: 'bar',
+  //   };
+  // },
+  // handleChange: function(value) {
+  //   this.setState({
+  //     selectedValue: value,
+  //   });
+  // },
+
   render: function() {
     return (
       React.createElement("form", {className: "chartForm", onSubmit: this.handleSubmit}, 
 
         React.createElement(Input, {id: "author", type: "text", placeholder: "author name", "data-text": "Author", ref: "author"}), 
-        React.createElement(Input, {id: "chart-title", type: "text", placeholder: "chart title", "data-text": "Chart Title", ref: "chart_title"}), 
+        React.createElement(Input, {id: "chart_title", type: "text", placeholder: "chart title", "data-text": "Chart Title"}), 
+
+        "// ", React.createElement("fieldset", null, 
+        "//   ", React.createElement("legend", null, "Chart Type"), 
+        "//     ", React.createElement("div", null, 
+        "//       ", React.createElement(RadioButton, {id: "chart-type-button", name: "chart-type", value: "bar", ref: "chart_type"}), 
+        "//       ", React.createElement("label", {for: "chart-type-button"}, "Bar"), 
+              
+        "//       ", React.createElement(RadioButton, {id: "chart-type-button", name: "chart-type", value: "line", ref: "chart_type"}), 
+        "//       ", React.createElement("label", {for: "chart-type-button"}, "Line"), 
+              
+        "//       ", React.createElement(RadioButton, {id: "chart-type-button", name: "chart-type", value: "pie", ref: "chart_type"}), 
+        "//       ", React.createElement("label", {for: "chart-type-button"}, "Pie"), 
+        "//     "), 
+        "// "), 
 
         React.createElement("fieldset", null, 
           React.createElement("legend", null, "Chart Type"), 
           React.createElement("div", null, 
-            React.createElement("input", {type: "radio", id: "chart-type-button", name: "chart-type", value: "bar", ref: "chart_type"}), 
-            React.createElement("label", {for: "chart-type-button"}, "Bar"), 
-
-            React.createElement("input", {type: "radio", id: "chart-type-button", name: "chart-type", value: "line", ref: "chart_type"}), 
-            React.createElement("label", {for: "chart-type-button"}, "Line"), 
-
-            React.createElement("input", {type: "radio", id: "chart-type-button", name: "chart-type", value: "pie", ref: "chart_type"}), 
-            React.createElement("label", {for: "chart-type-button"}, "Pie")
-          )
+            React.createElement(RadioGroup, {
+              name: "chart-type", 
+              selectedValue: this.state.selectedValue, 
+              onChange: this.handleChange}, 
+              Radio => (
+                React.createElement("div", null, 
+                  React.createElement("label", null, 
+                    React.createElement(Radio, {value: "bar"}), "Bar"
+                  ), 
+                  React.createElement("label", null, 
+                    React.createElement(Radio, {value: "line"}), "Line"
+                  ), 
+                  React.createElement("label", null, 
+                    React.createElement(Radio, {value: "pie"}), "Pie"
+                  )
+                )
+                )
+              )
+            )
         ), 
 
         React.createElement("fieldset", null, 
           React.createElement("legend", null, "Bar Chart Subtypes"), 
-            React.createElement("input", {type: "checkbox", id: "chart-subtype-button", name: "chart-subtype-1", value: "horizontal", ref: "chart_subtype_1"}), 
-            React.createElement("label", {for: "chart-subtype-button"}, "Horizontal"), 
+            React.createElement("div", null, 
+              React.createElement(CheckBox, {id: "chart-subtype-button", name: "chart-subtype-1", value: "horizontal", ref: "chart_subtype_1"}), 
+              React.createElement("label", {for: "chart-subtype-button"}, "Horizontal"), 
 
-            React.createElement("input", {type: "checkbox", id: "chart-subtype-button", name: "chart-subtype-2", value: "stacked", ref: "chart_subtype_2"}), 
-            React.createElement("label", {for: "chart-subtype-button"}, "Stacked")
+              React.createElement(CheckBox, {id: "chart-subtype-button", name: "chart-subtype-2", value: "stacked", ref: "chart_subtype_2"}), 
+              React.createElement("label", {for: "chart-subtype-button"}, "Stacked")
+            )
         ), 
 
         React.createElement("fieldset", null, 
@@ -200,3 +271,39 @@ React.render(
   React.createElement(ChartBox, {url: "charts.json", pollInterval: 120000}),
   document.getElementById('content')
 );
+
+//Set-up for node module react-radio-group, not working require not defined
+  // getInitialState: function() {
+  //   return {
+  //     selectedValue: 'bar',
+  //   };
+  // },
+  // handleChange: function(value) {
+  //   this.setState({
+  //     selectedValue: value,
+  //   });
+  // },
+
+        // <fieldset>
+        //   <legend>Chart Type</legend>
+        //   <div>
+        //     <RadioGroup
+        //       name="chart-type"
+        //       selectedValue={this.state.selectedValue}
+        //       onChange={this.handleChange}>
+        //       {Radio => (
+        //         <div>
+        //           <label>
+        //             <Radio value="bar" />Bar
+        //           </label>
+        //           <label>
+        //             <Radio value="line" />Line
+        //           </label>
+        //           <label>
+        //             <Radio value="pie" />Pie
+        //           </label>
+        //         </div>
+        //         )}
+        //       </RadioGroup>
+        //     </div>
+        // </fieldset>

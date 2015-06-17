@@ -57,153 +57,9 @@
         "chart": "<p></p>"
     },
     {
-        "chart_type": "pie",
-        "chart_subtype": "stacked",
-        "data_labels_format": "Number",
-        "data_series_format": "Number",
-        "chart_data": [
-            [
-                ""
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "chart_type": "pie",
-        "chart_subtype": "stacked",
-        "data_labels_format": "Currency ($)",
-        "data_series_format": "Percent (%)",
-        "chart_data": [
-            [
-                "1"
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "author": "",
-        "chart_title": "",
-        "chart_type": "pie",
-        "chart_subtype": "stacked",
-        "data_labels_format": "Percent (%)",
-        "data_series_format": "U.S. State",
-        "chart_data": [
-            [
-                "2"
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "chart_type": "pie",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
-        "data_labels_format": "Month",
-        "data_series_format": "Percent (%)",
-        "chart_data": [
-            [
-                "a"
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "chart_type": "pie",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
-        "data_labels_format": "U.S. State",
-        "data_series_format": "Number",
-        "chart_data": [
-            [
-                "b"
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "chart_type": "pie",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
-        "data_labels_format": "Number",
-        "data_series_format": "Number",
-        "chart_data": [
-            [
-                ""
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "chart_type": "pie",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
-        "data_labels_format": "U.S. State",
-        "data_series_format": "Number",
-        "chart_data": [
-            [
-                "zx"
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "author": "",
-        "chart_type": "pie",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
-        "data_labels_format": "",
-        "data_series_format": "",
-        "chart_data": [
-            [
-                ""
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "chart_type": "pie",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
-        "data_labels_format": "U.S. State",
-        "data_series_format": "Currency ($)",
-        "chart_data": [
-            [
-                ""
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
         "chart_type": "on",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
-        "data_labels_format": "Number",
-        "data_series_format": "Number",
-        "chart_data": [
-            [
-                ""
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "author": "",
-        "chart_type": "",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
-        "data_labels_format": "",
-        "data_series_format": "",
-        "chart_data": [
-            [
-                ""
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "chart_type": "on",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
+        "chart_subtype_1": "on",
+        "chart_subtype_2": "on",
         "data_labels_format": "Number",
         "data_series_format": "Number",
         "chart_data": [
@@ -215,8 +71,6 @@
     },
     {
         "chart_type": "on",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
         "data_labels_format": "Number",
         "data_series_format": "Number",
         "chart_data": [
@@ -228,21 +82,6 @@
     },
     {
         "chart_type": "on",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
-        "data_labels_format": "Number",
-        "data_series_format": "Number",
-        "chart_data": [
-            [
-                ""
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "chart_type": "on",
-        "chart_subtype_1": "horizontal",
-        "chart_subtype_2": "stacked",
         "data_labels_format": "Number",
         "data_series_format": "Number",
         "chart_data": [

@@ -1,0 +1,74 @@
+{
+  "name": "react-radio-group",
+  "version": "2.0.2",
+  "description": "Better radio buttons.",
+  "main": "index.js",
+  "scripts": {
+    "example": "webpack -w -d",
+    "build": "babel index.jsx --out-dir=lib --modules umd --module-id RadioGroup",
+    "prerelease": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenglou/react-radio-group.git"
+  },
+  "keywords": [
+    "facebook",
+    "react",
+    "radio",
+    "radio-group",
+    "component",
+    "react-component"
+  ],
+  "devDependencies": {
+    "babel": "^5.5.8",
+    "babel-core": "^5.2.17",
+    "babel-loader": "^5.0.0",
+    "webpack": "^1.8.11"
+  },
+  "author": {
+    "name": "chenglou",
+    "email": "chenglou92@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Jamison Dance",
+      "email": "jergason@gmail.com",
+      "url": "http://jamisondance.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chenglou/react-radio-group/issues"
+  },
+  "homepage": "https://github.com/chenglou/react-radio-group",
+  "peerDependencies": {
+    "react": ">=0.13.0"
+  },
+  "gitHead": "89e833838aea0cdfcf8e7008fdd3d4e70d84a5a1",
+  "_id": "react-radio-group@2.0.2",
+  "_shasum": "e377a6b8aca214827f2897c1d82c328646d9bcb6",
+  "_from": "react-radio-group@*",
+  "_npmVersion": "2.11.2",
+  "_nodeVersion": "0.10.36",
+  "_npmUser": {
+    "name": "chenglou",
+    "email": "chenglou92@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "jergason",
+      "email": "jergason@gmail.com"
+    },
+    {
+      "name": "chenglou",
+      "email": "chenglou92@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "e377a6b8aca214827f2897c1d82c328646d9bcb6",
+    "tarball": "http://registry.npmjs.org/react-radio-group/-/react-radio-group-2.0.2.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/react-radio-group/-/react-radio-group-2.0.2.tgz"
+}

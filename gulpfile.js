@@ -4,8 +4,8 @@ var gulp = require('gulp'),
 	react = require('gulp-react');
 
 gulp.task('jsx', function() {
-	return gulp.src('./public/scripts/example.jsx')
+	return gulp.src('./public/scripts/chartbox.jsx')
 		.pipe(react())
-		.pipe(rename('example.js'))
+		.pipe(rename('chartbox.js'))
 		.pipe(gulp.dest('public/scripts/'));
 });

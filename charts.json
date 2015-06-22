@@ -58,32 +58,8 @@
     },
     {
         "chart_type": "on",
-        "chart_subtype_1": "on",
-        "chart_subtype_2": "on",
-        "data_labels_format": "Number",
-        "data_series_format": "Number",
-        "chart_data": [
-            [
-                ""
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "chart_type": "on",
-        "data_labels_format": "Number",
-        "data_series_format": "Number",
-        "chart_data": [
-            [
-                ""
-            ]
-        ],
-        "chart": "<p></p>"
-    },
-    {
-        "chart_type": "on",
-        "data_labels_format": "Number",
-        "data_series_format": "Number",
+        "data_labels_format": "Month",
+        "data_series_format": "Currency ($)",
         "chart_data": [
             [
                 ""

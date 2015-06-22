@@ -24,10 +24,11 @@ var ChartForm = React.createClass({
       <form className="chartForm" onSubmit={this.handleSubmit}>
 
         <ChartForm.Input id="author" type="text" placeholder="author name" data-text="Author" ref="author" />
-        <ChartForm.Input id="chart_title" type="text" placeholder="chart title" data-text="Chart Title" />
+        <ChartForm.Input id="chart_title" type="text" placeholder="chart title" data-text="Chart Title" ref="chart_title" />
 
         <fieldset>
           <legend>Chart Type</legend>
+      { /* <ChartForm.RadioGroup id="chart-type-button" name="chart-type" values="['bar','line', 'pie']" ref="chart_type" /> */ }
             <div>
               <ChartForm.RadioButton id="chart-type-button" name="chart-type" value="bar" ref="chart_type" />
               <label for="chart-type-button">Bar</label>
@@ -50,9 +51,9 @@ var ChartForm = React.createClass({
         <fieldset>
           <legend>Data Format</legend>
             <p><label for="data-labels-format">Chart Labels</label>
-            <ChartForm.SelectOption id="data-labels-format" name="data-labels-format" ref="data_labels_format" /></p>
+            <ChartForm.SelectDropdown id="data-labels-format" name="data-labels-format" ref="data_labels_format" /></p>
             <p><label for="data-series-format">Chart Series</label>
-            <ChartForm.SelectOption id="data-series-format" name="data-series-format" ref="data_series_format" /></p>
+            <ChartForm.SelectDropdown id="data-series-format" name="data-series-format" ref="data_series_format" /></p>
         </fieldset>
 
         <label for="chart-data">Chart Data - Paste from Excel</label>
@@ -74,7 +75,7 @@ ChartForm.Input = React.createClass({
         <input type={this.props.type} id={this.props.id} placeholder={this.props.placeholder} ref={this.props.id} />
       </div>
     );
-  }
+  } 
 });
 
 ChartForm.RadioButton = React.createClass({
@@ -111,7 +112,7 @@ ChartForm.CheckBox = React.createClass({
   }
 });
 
-ChartForm.SelectOption = React.createClass({
+ChartForm.SelectDropdown = React.createClass({
   render: function() {
     var optionsList = ['Number', 'Percent (%)', 'Currency ($)', 'Year', 'Month', 'U.S. State', 'None'].map(function(value) {
       return (

@@ -2,7 +2,7 @@
 * @jsx React.DOM
 */
 
-/* top level component, create container to hold form and list */
+/* most top level component, render container to hold form and list */
 var ChartBox = React.createClass({displayName: "ChartBox",
   loadChartsFromServer: function() {
     $.ajax({

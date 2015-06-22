@@ -1,7 +1,6 @@
-// 'use strict';
-
-// var React = require('react');
-// var RadioGroup = require('react-radio-group');
+/** 
+* @jsx React.DOM
+*/
 
 var Chart = React.createClass({
   componentDidMount: function() {
@@ -187,18 +186,6 @@ var ChartForm = React.createClass({
     console.log(obj);
     this.props.onChartSubmit(obj);
   },
-
-  // getInitialState: function() {
-  //   return {
-  //     selectedValue: 'bar',
-  //   };
-  // },
-  // handleChange: function(value) {
-  //   this.setState({
-  //     selectedValue: value,
-  //   });
-  // },
-
   render: function() {
     return (
       <form className="chartForm" onSubmit={this.handleSubmit}>
@@ -248,39 +235,3 @@ React.render(
   <ChartBox url="charts.json" pollInterval={120000} />,
   document.getElementById('content')
 );
-
-//Set-up for node module react-radio-group, not working require not defined
-  // getInitialState: function() {
-  //   return {
-  //     selectedValue: 'bar',
-  //   };
-  // },
-  // handleChange: function(value) {
-  //   this.setState({
-  //     selectedValue: value,
-  //   });
-  // },
-
-        // <fieldset>
-        //   <legend>Chart Type</legend>
-        //   <div>
-        //     <RadioGroup
-        //       name="chart-type"
-        //       selectedValue={this.state.selectedValue}
-        //       onChange={this.handleChange}>
-        //       {Radio => (
-        //         <div>
-        //           <label>
-        //             <Radio value="bar" />Bar
-        //           </label>
-        //           <label>
-        //             <Radio value="line" />Line
-        //           </label>
-        //           <label>
-        //             <Radio value="pie" />Pie
-        //           </label>
-        //         </div>
-        //         )}
-        //       </RadioGroup>
-        //     </div>
-        // </fieldset>

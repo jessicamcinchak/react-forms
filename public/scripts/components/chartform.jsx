@@ -28,23 +28,15 @@ var ChartForm = React.createClass({
 
         <fieldset>
           <legend>Chart Type</legend>
-      { /* <ChartForm.RadioGroup id="chart-type-button" name="chart-type" values="['bar','line', 'pie']" ref="chart_type" /> */ }
             <div>
-              <ChartForm.RadioButton id="chart-type-button" name="chart-type" value="bar" ref="chart_type" />
-              <label for="chart-type-button">Bar</label>
-              
-              <ChartForm.RadioButton id="chart-type-button" name="chart-type" value="line" ref="chart_type" />
-              <label for="chart-type-button">Line</label>
-              
-              <ChartForm.RadioButton id="chart-type-button" name="chart-type" value="pie" ref="chart_type" />
-              <label for="chart-type-button">Pie</label>
+              <ChartForm.RadioButton values="Bar,Line,Pie" id="chart-type-button" name="chart-type" ref="chart_types" />
             </div>
         </fieldset>
 
         <fieldset>
           <legend>Bar Chart Subtypes</legend>
             <div>
-              <ChartForm.CheckBox values="horizontal,stacked" id="chart-subtype-button" ref="chart_subtypes"/>
+              <ChartForm.CheckBox values="Horizontal,Stacked" id="chart-subtype-button" ref="chart_subtypes"/>
             </div>
         </fieldset>
 
@@ -80,15 +72,19 @@ ChartForm.Input = React.createClass({
 
 ChartForm.RadioButton = React.createClass({
   render: function() {
-    var radioButtonList = [ 'bar', 'line', 'pie' ].map(function(value) {
-      // return (
-      //   {value}
-      // );
+    var id = this.props.id,
+    list = this.props.values.split(',').map(function(value) {
+      return (
+        <div>
+          <label>{value}</label>
+          <input type="radio" id={id} name={id} value={value} />
+        </div>
+      );
     });
     return (
-      <input type="radio" id={this.props.id} name={this.props.name} value={this.value} ref={this.props.id}>
-        {radioButtonList}
-      </input>
+      <div>
+        {list}
+      </div>
     );
   }
 });
@@ -100,7 +96,7 @@ ChartForm.CheckBox = React.createClass({
       return (
         <div>
           <label>{value}</label>
-          <input type="checkbox" name={id} id={id} value={value}/>
+          <input type="checkbox" name={id} id={id} value={value} />
         </div>
       );
     });
@@ -122,7 +118,7 @@ ChartForm.SelectDropdown = React.createClass({
       );
     });
     return (
-      <select id={this.props.id} name={this.props.name} value={this.value} ref={this.props.id}>
+      <select id={this.props.id} name={this.props.name} value={this.value} ref={this.props.id} >
         {optionsList}
       </select>
     );

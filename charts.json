@@ -55,5 +55,102 @@
             ]
         ],
         "chart": "<p></p>"
+    },
+    {
+        "data_labels_format": "Number",
+        "data_series_format": "Number",
+        "chart_data": [
+            [
+                ""
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_types": "",
+        "chart_subtypes": "",
+        "data_labels_format": "None",
+        "data_series_format": "Currency ($)",
+        "chart_data": [
+            [
+                "",
+                "State",
+                "Federal"
+            ],
+            [
+                "2010",
+                "3000000",
+                "2000000"
+            ],
+            [
+                "2011",
+                "4000000",
+                "6000000"
+            ],
+            [
+                "2012",
+                "5000000",
+                "1000000"
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_types": "",
+        "chart_subtypes": "",
+        "data_labels_format": "Year",
+        "data_series_format": "Currency ($)",
+        "chart_data": [
+            [
+                "2010",
+                "2011",
+                "2012"
+            ],
+            [
+                "3000000",
+                "4000000",
+                "5000000"
+            ],
+            [
+                "2000000",
+                "6000000",
+                "1000000"
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "data_labels_format": "Number",
+        "data_series_format": "Number",
+        "chart_data": [
+            [
+                ""
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "data_labels_format": "Number",
+        "data_series_format": "Number",
+        "chart_data": [
+            [
+                ""
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "data_labels_format": "Number",
+        "data_series_format": "Number",
+        "chart_data": [
+            [
+                ""
+            ]
+        ],
+        "chart": "<p></p>"
     }
 ]

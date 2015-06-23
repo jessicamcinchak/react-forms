@@ -5,79 +5,83 @@
 var ChartForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
-    var key, value, obj = {};
+    var key, component, value, obj = {};
     for (key in this.refs) {
-      value = this.refs[key];
-      // console.log(formatters[key]);
-      if (formatters[key]) {
-        obj[key] = formatters[key](React.findDOMNode(value).value);
-      } else {
-        obj[key] = React.findDOMNode(value).value;
-      }
-      React.findDOMNode(value).value = '';
+      component = this.refs[key];
+      value = (component.state != null) ? component.state.value : undefined;
+      obj[key] = value;
+      React.findDOMNode(component).value = '';
     }
     console.log(obj);
-    this.props.onChartSubmit(obj);
+    // this.props.onChartSubmit(obj);
   },
   render: function() {
     return (
       <form className="chartForm" onSubmit={this.handleSubmit}>
 
         <ChartForm.Input id="author" type="text" placeholder="author name" data-text="Author" ref="author" />
-        <ChartForm.Input id="chart_title" type="text" placeholder="chart title" data-text="Chart Title" ref="chart_title" />
+        <ChartForm.Input id="title" type="text" placeholder="chart title" data-text="Chart Title" ref="title" />
 
         <fieldset>
           <legend>Chart Type</legend>
-            <div>
-              <ChartForm.RadioButton values="Bar,Line,Pie" id="chart-type-button" name="chart-type" ref="chart_types" />
-            </div>
+          <ChartForm.RadioGroup values="Bar,Line,Pie" id="chart-type-button" name="chart-type" ref="chart_type" />
         </fieldset>
 
         <fieldset>
           <legend>Bar Chart Subtypes</legend>
-            <div>
-              <ChartForm.CheckBox values="Horizontal,Stacked" id="chart-subtype-button" ref="chart_subtypes"/>
-            </div>
+          <ChartForm.CheckboxGroup values="Horizontal,Stacked" id="chart-subtype-button" name="chart-subtype" ref="chart_subtypes"/>
         </fieldset>
 
         <fieldset>
           <legend>Data Format</legend>
-            <p><label for="data-labels-format">Chart Labels</label>
-            <ChartForm.SelectDropdown id="data-labels-format" name="data-labels-format" ref="data_labels_format" /></p>
-            <p><label for="data-series-format">Chart Series</label>
-            <ChartForm.SelectDropdown id="data-series-format" name="data-series-format" ref="data_series_format" /></p>
+          <ChartForm.DropdownSelect values="---,Year,Month,U.S. State" data-text="Chart Labels" id="data-labels-format" name="data-labels-format" ref="data_labels_format" />
+          <ChartForm.DropdownSelect values="---,Number,Percent (%),Currency ($)" data-text="Chart Series" id="data-series-format" name="data-series-format" ref="data_series_format" />
         </fieldset>
 
-        <label for="chart-data">Chart Data - Paste from Excel</label>
-        <textarea id="chart-data" placeholder="chart data here" ref="chart_data" />
+        <ChartForm.CsvArea id="chart-data" placeholder="chart data here" data-text="Chart Data - Paste from Excel" ref="chart_data" />
 
         <input type="submit" value="Post" />
+
       </form>
     );
   }
 });
 
 ChartForm.Input = React.createClass({
+  getInitialState: function() {
+    return { value: '' };
+  },
+  onChange: function(e) {
+    this.setState({ value: e.target.value });
+    console.log(this.state.value);
+  },
   render: function() {
     return (
-      <div class="chartForm__input">
+      <div>
         <label for={this.props.id}>
           {this.props['data-text']}
         </label>
-        <input type={this.props.type} id={this.props.id} placeholder={this.props.placeholder} ref={this.props.id} />
+        <input onChange={this.onChange} type={this.props.type} id={this.props.id} placeholder={this.props.placeholder} />
       </div>
     );
   } 
 });
 
-ChartForm.RadioButton = React.createClass({
+ChartForm.RadioGroup = React.createClass({
+  getInitialState: function() {
+    return { value: '' };
+  },
+  onChange: function(e) {
+    this.setState({ value: e.target.value });
+  },
   render: function() {
     var id = this.props.id,
+    self = this,
     list = this.props.values.split(',').map(function(value) {
       return (
         <div>
           <label>{value}</label>
-          <input type="radio" id={id} name={id} value={value} />
+          <input onChange={self.onChange} type="radio" id={id} name={id} value={value} />
         </div>
       );
     });
@@ -89,14 +93,26 @@ ChartForm.RadioButton = React.createClass({
   }
 });
 
-ChartForm.CheckBox = React.createClass({
+ChartForm.CheckboxGroup = React.createClass({
+  getInitialState: function() {
+    return { value: [] };
+  },
+  onChange: function(e) {
+    var value = e.target.value;
+    if(this.state.value.indexOf(value) === -1) { 
+      this.state.value.push(value); 
+    } else {
+      this.state.value.splice((this.state.value.indexOf(value)), 1);
+    }
+  },
   render: function() {
     var id = this.props.id,
+      self = this,
       list = this.props.values.split(',').map(function(value) {
       return (
         <div>
           <label>{value}</label>
-          <input type="checkbox" name={id} id={id} value={value} />
+          <input onChange={self.onChange} type="checkbox" id={id} name={id} value={value} />
         </div>
       );
     });
@@ -108,9 +124,17 @@ ChartForm.CheckBox = React.createClass({
   }
 });
 
-ChartForm.SelectDropdown = React.createClass({
+ChartForm.DropdownSelect = React.createClass({
+  getInitialState: function() {
+    return { value: '' };
+  },
+  onChange: function(e) {
+    this.setState({ value: e.target.value });
+  },
   render: function() {
-    var optionsList = ['Number', 'Percent (%)', 'Currency ($)', 'Year', 'Month', 'U.S. State', 'None'].map(function(value) {
+    var id = this.props.id,
+        self = this, 
+        list = this.props.values.split(',').map(function(value) {
       return (
         <option>
           {value}
@@ -118,15 +142,38 @@ ChartForm.SelectDropdown = React.createClass({
       );
     });
     return (
-      <select id={this.props.id} name={this.props.name} value={this.value} ref={this.props.id} >
-        {optionsList}
-      </select>
+      <div>
+        <label for={this.props.id}>{this.props['data-text']}</label>
+        <select onChange={self.onChange} id={this.props.id} name={this.props.name} value={this.value}>
+          {list}
+        </select>
+      </div>
+    );
+  }
+});
+
+ChartForm.CsvArea = React.createClass({
+  getInitialState: function() {
+    return { value: '' };
+  },
+  onChange: function(e) {
+    this.setState({ value: e.target.value });
+    console.log(this.state.value);
+  },
+  render: function() {
+    return (
+      <div>
+        <label for={this.props.id}>
+          {this.props['data-text']}
+        </label>
+        <textarea onChange={this.onChange} id={this.props.id} placeholder={this.props.placeholder} />
+      </div>
     );
   }
 });
 
 var formatters = {
-  'chart_data': function(data) {
+  'chart-data': function(data) {
     return data.split('\n').map(function(x) { return x.split('\t'); });
   }
 };

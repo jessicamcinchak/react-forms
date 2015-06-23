@@ -13,7 +13,7 @@ var ChartForm = React.createClass({
       React.findDOMNode(component).value = '';
     }
     console.log(obj);
-    // this.props.onChartSubmit(obj);
+    this.props.onChartSubmit(obj);
   },
   render: function() {
     return (
@@ -34,11 +34,11 @@ var ChartForm = React.createClass({
 
         <fieldset>
           <legend>Data Format</legend>
-          <ChartForm.DropdownSelect values="---,Year,Month,U.S. State" data-text="Chart Labels" id="data-labels-format" name="data-labels-format" ref="data_labels_format" />
-          <ChartForm.DropdownSelect values="---,Number,Percent (%),Currency ($)" data-text="Chart Series" id="data-series-format" name="data-series-format" ref="data_series_format" />
+          <ChartForm.Dropdown values="---,Year,Month,U.S. State" data-text="Chart Labels" id="data-labels-format" name="data-labels-format" ref="data_labels_format" />
+          <ChartForm.Dropdown values="---,Number,Percent (%),Currency ($)" data-text="Chart Series" id="data-series-format" name="data-series-format" ref="data_series_format" />
         </fieldset>
 
-        <ChartForm.CsvArea id="chart-data" placeholder="chart data here" data-text="Chart Data - Paste from Excel" ref="chart_data" />
+        <ChartForm.ChartInput id="chart-data" placeholder="chart data here" data-text="Chart Data - Paste from Excel" ref="chart_data" />
 
         <input type="submit" value="Post" />
 
@@ -69,7 +69,7 @@ ChartForm.Input = React.createClass({
 
 ChartForm.RadioGroup = React.createClass({
   getInitialState: function() {
-    return { value: '' };
+    return { value: this.props.values.split(',')[0] };
   },
   onChange: function(e) {
     this.setState({ value: e.target.value });
@@ -77,11 +77,11 @@ ChartForm.RadioGroup = React.createClass({
   render: function() {
     var id = this.props.id,
     self = this,
-    list = this.props.values.split(',').map(function(value) {
+    list = this.props.values.split(',').map(function(value, i) {
       return (
         <div>
           <label>{value}</label>
-          <input onChange={self.onChange} type="radio" id={id} name={id} value={value} />
+          <input onChange={self.onChange} type="radio" id={id} name={id} value={value} defaultChecked={i === 0} />
         </div>
       );
     });
@@ -124,7 +124,7 @@ ChartForm.CheckboxGroup = React.createClass({
   }
 });
 
-ChartForm.DropdownSelect = React.createClass({
+ChartForm.Dropdown = React.createClass({
   getInitialState: function() {
     return { value: '' };
   },
@@ -152,13 +152,17 @@ ChartForm.DropdownSelect = React.createClass({
   }
 });
 
-ChartForm.CsvArea = React.createClass({
+ChartForm.ChartInput = React.createClass({
   getInitialState: function() {
     return { value: '' };
   },
   onChange: function(e) {
-    this.setState({ value: e.target.value });
-    console.log(this.state.value);
+    var value = e.target.value;
+    // Split CSV into array of arrays before setting state.
+    value = value.split('\n').map(function(x) { 
+      return x.split('\t');
+    });
+    this.setState({ value: value });
   },
   render: function() {
     return (
@@ -171,9 +175,3 @@ ChartForm.CsvArea = React.createClass({
     );
   }
 });
-
-var formatters = {
-  'chart-data': function(data) {
-    return data.split('\n').map(function(x) { return x.split('\t'); });
-  }
-};

@@ -2,6 +2,10 @@
 * @jsx React.DOM
 */
 
+/* 
+* Child component of ChartBox
+* Renders list to display title, author, and charts after form submit
+*/
 var ChartList = React.createClass({
   render: function() {
     var chartNodes = this.props.data.map(function(chart, index) {
@@ -37,9 +41,12 @@ ChartList.Chart = React.createClass({
     data.chart = data.chart || '<p></p>';
     return (
       <div className="chart">
-        <h2 className="chartAuthor">
-          {data.author}
+        <h2 className="chartTitle">
+          {data.title}
         </h2>
+        <h3 className="chartAuthor">
+          {data.author}
+        </h3>
         <div dangerouslySetInnerHTML={{ __html: data.chart }} />
       </div>
     );

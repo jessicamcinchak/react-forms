@@ -2,6 +2,10 @@
 * @jsx React.DOM
 */
 
+/* 
+* Child component of ChartBox
+* Renders form to input data used to draw charts
+*/
 var ChartForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
@@ -38,7 +42,7 @@ var ChartForm = React.createClass({
           <ChartForm.Dropdown values="---,Number,Percent (%),Currency ($)" data-text="Chart Series" id="data-series-format" name="data-series-format" ref="data_series_format" />
         </fieldset>
 
-        <ChartForm.ChartInput id="chart-data" placeholder="chart data here" data-text="Chart Data - Paste from Excel" ref="chart_data" />
+        <ChartForm.ChartDataInput id="chart-data" placeholder="chart data here" data-text="Chart Data - Paste from Excel" ref="chart_data" />
 
         <input type="submit" value="Post" />
 
@@ -152,13 +156,13 @@ ChartForm.Dropdown = React.createClass({
   }
 });
 
-ChartForm.ChartInput = React.createClass({
+ChartForm.ChartDataInput = React.createClass({
   getInitialState: function() {
     return { value: '' };
   },
   onChange: function(e) {
     var value = e.target.value;
-    // Split CSV into array of arrays before setting state.
+    // Split CSV into array of arrays before setting state
     value = value.split('\n').map(function(x) { 
       return x.split('\t');
     });

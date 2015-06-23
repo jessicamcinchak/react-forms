@@ -2,7 +2,10 @@
 * @jsx React.DOM
 */
 
-/* most top level component, render container to hold form and list */
+/* 
+* Most top level component
+* Renders container to hold ChartForm and ChartList
+*/
 var ChartBox = React.createClass({
   loadChartsFromServer: function() {
     $.ajax({
@@ -21,9 +24,6 @@ var ChartBox = React.createClass({
     var charts = this.state.data;
     charts.push(chart);
     this.setState({data: charts}, function() {
-      // `setState` accepts a callback. To avoid (improbable) race condition,
-      // `we'll send the ajax request right after we optimistically set the new
-      // `state.
       $.ajax({
         url: this.props.url,
         dataType: 'json',

@@ -1,0 +1,144 @@
+body {
+  background: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  padding: 30px;
+}
+
+#content {
+  display: block;
+  width: 60%;
+  margin: auto;
+  max-width: 800px;
+}
+
+.chart {
+  display: block;
+  margin: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.chart > div, .cts, .ct-chart {
+  height: 500px;
+}
+
+a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+  font-size: 12px;
+  margin: 0 2px;
+  padding: 0px 5px;
+}
+
+h1, h2, h3, h4 {
+  font-weight: bold;
+  margin: 0 0 15px;
+  padding: 0;
+}
+
+h1 {
+  border-bottom: 1px solid #ddd;
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 0 0 15px;
+  padding: 0;
+}
+
+h2 {
+  border-bottom: 1px solid #eee;
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+p, ul {
+  display: block;
+  margin: 10px auto 10px auto;
+  padding: 5px;
+}
+
+ul {
+  padding-left: 30px;
+}
+
+fieldset {
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgray;
+  margin: 10px auto 10px auto;
+  padding: 5px;
+}
+
+.chartForm {
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgray;
+  padding: 15px;  
+}
+
+label, input, textarea {
+  margin: 5px 5px auto auto;
+}
+
+label {
+  display: inline-block;
+  position: relative;
+  vertical-align: baseline;
+  margin: 5px 5px auto auto;
+}
+
+input {
+  display: block;
+  height: 30px;
+  width: 98%;
+}
+
+input[type="text"] {
+  padding-left: 5px;
+}
+
+div {
+  margin: auto;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  display: inline-block;
+  position: relative;
+}
+
+select {
+  display: inline-block;
+  width: 60%;
+  margin: auto;
+}
+
+textarea {
+  display: block;
+  height: 150px;
+  width: 98%;
+  border-color: lightgray;
+  margin: auto;
+}

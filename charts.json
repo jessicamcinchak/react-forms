@@ -1,0 +1,35 @@
+[
+    {
+        "author": "author shows up here",
+        "title": "chart title shows up here",
+        "chart": "<div class='cts' data-type='line' data-series-format='currency' data-labels-format='year'><ul class='hidden'><li class='cts__labels'>1994|1995|1996</li><li class='cts__series' data-name='Federal'>3605|5475|4820</li><li class='cts__series' data-name='State'>2550|2905|3290</li></ul></div>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_type": "Bar",
+        "data_labels_format": "",
+        "data_series_format": "",
+        "chart_data": [
+            [
+                "",
+                "2010",
+                "2011",
+                "2012"
+            ],
+            [
+                "State",
+                "3000000",
+                "4000000",
+                "5000000"
+            ],
+            [
+                "Federal",
+                "2000000",
+                "6000000",
+                "1000000"
+            ]
+        ],
+        "chart": "<p></p>"
+    }
+]

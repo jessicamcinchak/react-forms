@@ -3,11 +3,12 @@
 */
 
 /* 
-* Most top level component
+* Create most top level component
 * Renders container to hold ChartForm and ChartList
+* @returns div (div tags are not actual DOM nodes, but instantiations of React div components)
 */
 var ChartBox = React.createClass({
-  loadChartsFromServer: function() {
+  loadChartsFromServer: function() { //hook up the data model
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -41,7 +42,7 @@ var ChartBox = React.createClass({
   getInitialState: function() {
     return {data: []};
   },
-  componentDidMount: function() {
+  componentDidMount: function() { //method called automatically by react when component is rendered
     this.loadChartsFromServer();
     setInterval(this.loadChartsFromServer, this.props.pollInterval);
   },
@@ -56,7 +57,11 @@ var ChartBox = React.createClass({
   }
 });
 
+/*
+* React.render() runs only once
+* It instantiates the root component, starts the framework, and injects markup in raw DOM element
+*/
 React.render(
-  <ChartBox url="charts.json" pollInterval={120000} />,
+  <ChartBox url="charts.json" pollInterval={120000} />, //fetch data from server every 2 minutes
   document.getElementById('content')
 );

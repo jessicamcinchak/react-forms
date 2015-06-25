@@ -2,9 +2,13 @@
 * @jsx React.DOM
 */
 
-/* most top level component, render container to hold form and list */
+/* 
+* Create most top level component
+* Renders container to hold ChartForm and ChartList
+* @returns div (div tags are not actual DOM nodes, but instantiations of React div components)
+*/
 var ChartBox = React.createClass({displayName: "ChartBox",
-  loadChartsFromServer: function() {
+  loadChartsFromServer: function() { //hook up the data model
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -21,9 +25,6 @@ var ChartBox = React.createClass({displayName: "ChartBox",
     var charts = this.state.data;
     charts.push(chart);
     this.setState({data: charts}, function() {
-      // `setState` accepts a callback. To avoid (improbable) race condition,
-      // `we'll send the ajax request right after we optimistically set the new
-      // `state.
       $.ajax({
         url: this.props.url,
         dataType: 'json',
@@ -41,7 +42,7 @@ var ChartBox = React.createClass({displayName: "ChartBox",
   getInitialState: function() {
     return {data: []};
   },
-  componentDidMount: function() {
+  componentDidMount: function() { //method called automatically by react when component is rendered
     this.loadChartsFromServer();
     setInterval(this.loadChartsFromServer, this.props.pollInterval);
   },
@@ -56,7 +57,11 @@ var ChartBox = React.createClass({displayName: "ChartBox",
   }
 });
 
+/*
+* React.render() runs only once
+* It instantiates the root component, starts the framework, and injects markup in raw DOM element
+*/
 React.render(
-  React.createElement(ChartBox, {url: "charts.json", pollInterval: 120000}),
+  React.createElement(ChartBox, {url: "charts.json", pollInterval: 120000}), //fetch data from server every 2 minutes
   document.getElementById('content')
 );

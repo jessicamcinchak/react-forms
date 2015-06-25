@@ -3,7 +3,7 @@
 */
 
 /* 
-* Child component of ChartBox
+* Child component of ChartBox, parent component of Chart
 * Renders list to display title, author, and charts after form submit
 */
 var ChartList = React.createClass({
@@ -23,6 +23,9 @@ var ChartList = React.createClass({
   }
 });
 
+/*
+* Chart is a subcomponent that depends on data passed in from Chartlist
+*/
 ChartList.Chart = React.createClass({
   componentDidMount: function() {
     var $el = $(this.getDOMNode()), $chart,

@@ -3,7 +3,7 @@
 */
 
 /* 
-* Child component of ChartBox
+* Child component of ChartBox, parent component to form elements below
 * Renders form to input data used to draw charts
 */
 var ChartForm = React.createClass({
@@ -18,6 +18,9 @@ var ChartForm = React.createClass({
     }
     console.log(obj);
     this.props.onChartSubmit(obj);
+  },
+  logChange: function() {
+    console.log('changed');
   },
   render: function() {
     return (
@@ -92,6 +95,20 @@ ChartForm.RadioGroup = React.createClass({
     return (
       <div>
         {list}
+      </div>
+    );
+  }
+});
+
+ChartForm.RadioGroupItem = React.createClass({
+  onChange: function(e) {
+    this.setState({ value: e.target.value });
+  },
+  render: function() {
+    return (
+      <div>
+        <label>{value}</label>
+        <input onChange={self.onChange} type="radio" id={id} name={id} value={value} defaultChecked={i === 0} />
       </div>
     );
   }

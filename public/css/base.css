@@ -1,8 +1,7 @@
 body {
-  background: #fff;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: helvetica, sans-serif;
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 175%;
   margin: 0;
   padding: 30px;
 }
@@ -25,6 +24,7 @@ body {
 
 .chart > div, .cts, .ct-chart {
   height: 500px;
+  background: #fff;
 }
 
 a {
@@ -40,7 +40,7 @@ code {
   background-color: #f8f8f8;
   border: 1px solid #ddd;
   border-radius: 3px;
-  font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+  font-family: helvetica, sans-serif;
   font-size: 12px;
   margin: 0 2px;
   padding: 0px 5px;
@@ -48,7 +48,7 @@ code {
 
 h1, h2, h3, h4 {
   font-weight: bold;
-  margin: 0 0 15px;
+  margin: 0 0 20px;
   padding: 0;
 }
 
@@ -56,8 +56,6 @@ h1 {
   border-bottom: 1px solid #ddd;
   font-size: 2.5em;
   font-weight: bold;
-  margin: 0 0 15px;
-  padding: 0;
 }
 
 h2 {
@@ -84,18 +82,19 @@ ul {
 }
 
 fieldset {
-  border-style: solid;
-  border-width: 1px;
-  border-color: lightgray;
+  border: 1px dashed #443094;
+  border-radius: 5px;
+  background-color: white;
   margin: 10px auto 10px auto;
   padding: 5px;
 }
 
 .chartForm {
-  border-style: solid;
-  border-width: 1px;
-  border-color: lightgray;
+  border: 1.5px solid #443094;
+  border-radius: 15px;
+  background: #f7f7f7;
   padding: 15px;  
+  margin-bottom: 15px;
 }
 
 label, input, textarea {
@@ -109,24 +108,27 @@ label {
   margin: 5px 5px auto auto;
 }
 
+div {
+  margin: auto;
+}
+
 input {
-  display: block;
+  display: inline-block;
   height: 30px;
   width: 98%;
 }
 
 input[type="text"] {
+  border: 1px dashed #443094;
+  border-radius: 5px;
   padding-left: 5px;
-}
-
-div {
-  margin: auto;
 }
 
 input[type="radio"],
 input[type="checkbox"] {
   display: inline-block;
   position: relative;
+  height: 20px;
 }
 
 select {
@@ -139,6 +141,17 @@ textarea {
   display: block;
   height: 150px;
   width: 98%;
-  border-color: lightgray;
+  border: 1px dashed #443094;
+  border-radius: 5px;
   margin: auto;
+}
+
+input[type="submit"] {
+  width: 100%;
+  font-size: 14px;
+  color: #fff;
+  border: 1px solid #443094;
+  border-radius: 15px;
+  background-color: #443094;
+  margin-top: 15px;
 }

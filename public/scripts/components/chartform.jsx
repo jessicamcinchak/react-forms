@@ -47,7 +47,7 @@ var ChartForm = React.createClass({
 
         <ChartForm.ChartDataInput id="chart-data" placeholder="chart data here" data-text="Chart Data - Paste from Excel" ref="chart_data" />
 
-        <input type="submit" value="Post" />
+        <input type="submit" value="Create Chart" />
 
       </form>
     );

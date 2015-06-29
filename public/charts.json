@@ -31,5 +31,9 @@
             ]
         ],
         "chart": "<p></p>"
+    },
+    {
+        "author": "Another author shows up here",
+        "title": "Another chart title shows up here"
     }
 ]

@@ -7,7 +7,7 @@
 * Renders form to input data used to draw charts
 */
 var ChartForm = React.createClass({
-  handleSubmit: function(e) {
+  handleSubmit: function(e) { //when form is submitted, clear it, make a request to the server, and refresh list of charts
     e.preventDefault();
     var key, component, value, obj = {};
     for (key in this.refs) {
@@ -18,9 +18,6 @@ var ChartForm = React.createClass({
     }
     console.log(obj);
     this.props.onChartSubmit(obj);
-  },
-  logChange: function() {
-    console.log('changed');
   },
   render: function() {
     return (
@@ -100,19 +97,20 @@ ChartForm.RadioGroup = React.createClass({
   }
 });
 
-ChartForm.RadioGroupItem = React.createClass({
-  onChange: function(e) {
-    this.setState({ value: e.target.value });
-  },
-  render: function() {
-    return (
-      <div>
-        <label>{value}</label>
-        <input onChange={self.onChange} type="radio" id={id} name={id} value={value} defaultChecked={i === 0} />
-      </div>
-    );
-  }
-});
+// //Is this redundant with above?
+// ChartForm.RadioGroupItem = React.createClass({
+//   onChange: function(e) {
+//     this.setState({ value: e.target.value });
+//   },
+//   render: function() {
+//     return (
+//       <div>
+//         <label>{value}</label>
+//         <input onChange={self.onChange} type="radio" id={id} name={id} value={value} defaultChecked={i === 0} />
+//       </div>
+//     );
+//   }
+// });
 
 ChartForm.CheckboxGroup = React.createClass({
   getInitialState: function() {

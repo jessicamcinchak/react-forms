@@ -22,7 +22,7 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-//move json into public folder to run gh-pages demo
+//call json from public folder to run gh-pages demo
 app.get('/public/charts.json', function(req, res) {
   fs.readFile('public/charts.json', function(err, data) {
     res.setHeader('Cache-Control', 'no-cache');

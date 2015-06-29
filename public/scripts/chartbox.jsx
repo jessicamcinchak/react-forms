@@ -58,8 +58,8 @@ var ChartBox = React.createClass({
 });
 
 /*
+* Instantiate the root component, start the framework, and inject markup in raw DOM element 
 * React.render() runs only once
-* It instantiates the root component, starts the framework, and injects markup in raw DOM element
 */
 React.render(
   <ChartBox url="charts.json" pollInterval={120000} />, //fetch data from server every 2 minutes

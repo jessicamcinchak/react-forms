@@ -34,7 +34,7 @@ ChartList.Chart = React.createClass({
     if (search.length > 0) {
       $chart = $(search);
       ChartistHtml.config.baseClass = 'cts';
-      cm = new ChartistHtml.ChartManager($chart);
+      cm = new ChartistHtml.ChartManager($chart); //use ChartistHtml lib to draw charts
       cm.setData();
       cm.render();
     }

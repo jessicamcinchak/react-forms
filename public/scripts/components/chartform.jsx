@@ -78,7 +78,7 @@ ChartForm.RadioGroup = React.createClass({
   onChange: function(e) {
     this.setState({ value: e.target.value });
   },
-  render: function() { //dynamic array of children need unique key on the root
+  render: function() { //dynamic array of children need unique key on the root div
     var id = this.props.id,
     self = this,
     list = this.props.values.split(',').map(function(value, [i]) {
@@ -97,21 +97,6 @@ ChartForm.RadioGroup = React.createClass({
   }
 });
 
-// //Is this redundant with above?
-// ChartForm.RadioGroupItem = React.createClass({
-//   onChange: function(e) {
-//     this.setState({ value: e.target.value });
-//   },
-//   render: function() {
-//     return (
-//       <div>
-//         <label>{value}</label>
-//         <input onChange={self.onChange} type="radio" id={id} name={id} value={value} defaultChecked={i === 0} />
-//       </div>
-//     );
-//   }
-// });
-
 ChartForm.CheckboxGroup = React.createClass({
   getInitialState: function() {
     return { value: [] };
@@ -124,7 +109,7 @@ ChartForm.CheckboxGroup = React.createClass({
       this.state.value.splice((this.state.value.indexOf(value)), 1);
     }
   },
-  render: function() { //dynamic array of children need unique key on the root
+  render: function() { //dynamic array of children need unique key on the root div
     var id = this.props.id,
       self = this,
       list = this.props.values.split(',').map(function(value, i) {
@@ -150,7 +135,7 @@ ChartForm.Dropdown = React.createClass({
   onChange: function(e) {
     this.setState({ value: e.target.value });
   },
-  render: function() { //dynamic array of children need unique key on the root
+  render: function() { //dynamic array of children need unique key on the root option
     var id = this.props.id,
         self = this, 
         list = this.props.values.split(',').map(function(value, i) {
@@ -181,7 +166,7 @@ ChartForm.ChartDataInput = React.createClass({
     value = value.split('\n').map(function(x) { 
       return x.split('\t');
     });
-    value[0].shift(); //removes first empty element from value[0] to create labels array
+    value[0].shift(); //removes first empty element from value[0] to create accurate labels array
     this.setState({ value: value });
   },
   render: function() {

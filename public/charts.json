@@ -47,5 +47,171 @@
         "data_series_format": "Number",
         "chart_data": "",
         "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_type": "Bar",
+        "data_labels_format": "",
+        "data_series_format": "",
+        "chart_data": [
+            [
+                "",
+                "2010",
+                "2011",
+                "2012"
+            ],
+            [
+                "State",
+                "3000000",
+                "4000000",
+                "5000000"
+            ],
+            [
+                "Federal",
+                "2000000",
+                "6000000",
+                "1000000"
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_type": "Bar",
+        "data_labels_format": "",
+        "data_series_format": "",
+        "chart_data": [
+            [
+                "2010",
+                "2011",
+                "2012"
+            ],
+            [
+                "State",
+                "3000000",
+                "4000000",
+                "5000000"
+            ],
+            [
+                "Federal",
+                "2000000",
+                "6000000",
+                "1000000"
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_type": "Bar",
+        "data_labels_format": "",
+        "data_series_format": "",
+        "chart_data": [
+            [
+                "2011",
+                "2012"
+            ],
+            [
+                "State",
+                "3000000",
+                "4000000",
+                "5000000"
+            ],
+            [
+                "Federal",
+                "2000000",
+                "6000000",
+                "1000000"
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_type": "Bar",
+        "data_labels_format": "",
+        "data_series_format": "",
+        "chart_data": [
+            [
+                "2010",
+                "2011",
+                "2012"
+            ],
+            [
+                "State",
+                "3000000",
+                "4000000",
+                "5000000"
+            ],
+            [
+                "Federal",
+                "2000000",
+                "6000000",
+                "1000000"
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_type": "Bar",
+        "data_labels_format": "",
+        "data_series_format": "",
+        "chart_data": [
+            [
+                "2010",
+                "2011",
+                "2012"
+            ],
+            [
+                "State",
+                "3000000",
+                "4000000",
+                "5000000"
+            ],
+            [
+                "Federal",
+                "2000000",
+                "6000000",
+                "1000000"
+            ]
+        ],
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_type": "Bar",
+        "data_labels_format": "",
+        "data_series_format": "",
+        "chart_data": "",
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_type": "Pie",
+        "data_labels_format": "",
+        "data_series_format": "",
+        "chart_data": "",
+        "chart": "<p></p>"
+    },
+    {
+        "author": "",
+        "title": "",
+        "chart_type": "Bar",
+        "chart_subtypes": [
+            "Horizontal",
+            "Stacked"
+        ],
+        "data_labels_format": "Year",
+        "data_series_format": "Percent (%)",
+        "chart_data": "",
+        "chart": "<p></p>"
     }
 ]

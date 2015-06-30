@@ -78,12 +78,12 @@ ChartForm.RadioGroup = React.createClass({
   onChange: function(e) {
     this.setState({ value: e.target.value });
   },
-  render: function() {
+  render: function() { //dynamic array of children need unique key on the root
     var id = this.props.id,
     self = this,
-    list = this.props.values.split(',').map(function(value, i) {
+    list = this.props.values.split(',').map(function(value, [i]) {
       return (
-        <div>
+        <div key={"radio-" + value}>
           <label>{value}</label>
           <input onChange={self.onChange} type="radio" id={id} name={id} value={value} defaultChecked={i === 0} />
         </div>
@@ -124,12 +124,12 @@ ChartForm.CheckboxGroup = React.createClass({
       this.state.value.splice((this.state.value.indexOf(value)), 1);
     }
   },
-  render: function() {
+  render: function() { //dynamic array of children need unique key on the root
     var id = this.props.id,
       self = this,
-      list = this.props.values.split(',').map(function(value) {
+      list = this.props.values.split(',').map(function(value, i) {
       return (
-        <div>
+        <div key={"checkbox-" + value}>
           <label>{value}</label>
           <input onChange={self.onChange} type="checkbox" id={id} name={id} value={value} />
         </div>
@@ -150,12 +150,12 @@ ChartForm.Dropdown = React.createClass({
   onChange: function(e) {
     this.setState({ value: e.target.value });
   },
-  render: function() {
+  render: function() { //dynamic array of children need unique key on the root
     var id = this.props.id,
         self = this, 
-        list = this.props.values.split(',').map(function(value) {
+        list = this.props.values.split(',').map(function(value, i) {
       return (
-        <option>
+        <option key={"dropdown-" + value}>
           {value}
         </option>
       );
@@ -181,6 +181,7 @@ ChartForm.ChartDataInput = React.createClass({
     value = value.split('\n').map(function(x) { 
       return x.split('\t');
     });
+    value[0].shift(); //removes first empty element from value[0] to create labels array
     this.setState({ value: value });
   },
   render: function() {

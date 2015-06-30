@@ -42,7 +42,7 @@ var ChartForm = React.createClass({
           <ChartForm.Dropdown values="---,Number,Percent (%),Currency ($)" data-text="Chart Series" id="data-series-format" name="data-series-format" ref="data_series_format" />
         </fieldset>
 
-        <ChartForm.ChartDataInput id="chart-data" placeholder="chart data here" data-text="Chart Data - Paste from Excel" ref="chart_data" />
+        <ChartForm.ChartDataInput id="chart-data" placeholder="paste chart data here" data-text="Chart Data - Paste from Excel" ref="chart_data" />
 
         <input type="submit" value="Create Chart" />
 
@@ -57,7 +57,7 @@ ChartForm.Input = React.createClass({
   },
   onChange: function(e) {
     this.setState({ value: e.target.value });
-    console.log(this.state.value);
+    // console.log(this.state.value);
   },
   render: function() {
     return (

@@ -35,5 +35,17 @@
     {
         "author": "Another author shows up here",
         "title": "Another chart title shows up here"
+    },
+    {
+        "author": "jessica",
+        "title": "chart title",
+        "chart_type": "Bar",
+        "chart_subtypes": [
+            "Stacked"
+        ],
+        "data_labels_format": "U.S. State",
+        "data_series_format": "Number",
+        "chart_data": "",
+        "chart": "<p></p>"
     }
 ]

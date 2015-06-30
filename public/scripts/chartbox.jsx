@@ -63,9 +63,9 @@ var ChartBox = React.createClass({
 
 /*
 * Instantiate the root component, start the framework, and inject markup in raw DOM element 
-* React.render() runs only once
+* React.render() runs only once on top level component
 */
 React.render(
-  <ChartBox url="charts.json" pollInterval={120000} />, //fetch data from server every 2 minutes
+  <ChartBox url="public/charts.json" pollInterval={120000} />, //fetch data from server every 2 minutes
   document.getElementById('content')
 );

@@ -7,7 +7,7 @@
 * Renders form to input data used to draw charts
 */
 var ChartForm = React.createClass({
-  handleSubmit: function(e) {
+  handleSubmit: function(e) { //when form is submitted, clear it, make a request to the server, and refresh list of charts
     e.preventDefault();
     var key, component, value, obj = {};
     for (key in this.refs) {
@@ -18,9 +18,6 @@ var ChartForm = React.createClass({
     }
     console.log(obj);
     this.props.onChartSubmit(obj);
-  },
-  logChange: function() {
-    console.log('changed');
   },
   render: function() {
     return (
@@ -45,7 +42,7 @@ var ChartForm = React.createClass({
           <ChartForm.Dropdown values="---,Number,Percent (%),Currency ($)" data-text="Chart Series" id="data-series-format" name="data-series-format" ref="data_series_format" />
         </fieldset>
 
-        <ChartForm.ChartDataInput id="chart-data" placeholder="chart data here" data-text="Chart Data - Paste from Excel" ref="chart_data" />
+        <ChartForm.ChartDataInput id="chart-data" placeholder="paste chart data here" data-text="Chart Data - Paste from Excel" ref="chart_data" />
 
         <input type="submit" value="Create Chart" />
 
@@ -60,7 +57,7 @@ ChartForm.Input = React.createClass({
   },
   onChange: function(e) {
     this.setState({ value: e.target.value });
-    console.log(this.state.value);
+    // console.log(this.state.value);
   },
   render: function() {
     return (
@@ -81,12 +78,12 @@ ChartForm.RadioGroup = React.createClass({
   onChange: function(e) {
     this.setState({ value: e.target.value });
   },
-  render: function() {
+  render: function() { //dynamic array of children need unique key on the root div
     var id = this.props.id,
     self = this,
-    list = this.props.values.split(',').map(function(value, i) {
+    list = this.props.values.split(',').map(function(value, [i]) {
       return (
-        <div>
+        <div key={"radio-" + value}>
           <label>{value}</label>
           <input onChange={self.onChange} type="radio" id={id} name={id} value={value} defaultChecked={i === 0} />
         </div>
@@ -95,20 +92,6 @@ ChartForm.RadioGroup = React.createClass({
     return (
       <div>
         {list}
-      </div>
-    );
-  }
-});
-
-ChartForm.RadioGroupItem = React.createClass({
-  onChange: function(e) {
-    this.setState({ value: e.target.value });
-  },
-  render: function() {
-    return (
-      <div>
-        <label>{value}</label>
-        <input onChange={self.onChange} type="radio" id={id} name={id} value={value} defaultChecked={i === 0} />
       </div>
     );
   }
@@ -126,12 +109,12 @@ ChartForm.CheckboxGroup = React.createClass({
       this.state.value.splice((this.state.value.indexOf(value)), 1);
     }
   },
-  render: function() {
+  render: function() { //dynamic array of children need unique key on the root div
     var id = this.props.id,
       self = this,
-      list = this.props.values.split(',').map(function(value) {
+      list = this.props.values.split(',').map(function(value, i) {
       return (
-        <div>
+        <div key={"checkbox-" + value}>
           <label>{value}</label>
           <input onChange={self.onChange} type="checkbox" id={id} name={id} value={value} />
         </div>
@@ -152,12 +135,12 @@ ChartForm.Dropdown = React.createClass({
   onChange: function(e) {
     this.setState({ value: e.target.value });
   },
-  render: function() {
+  render: function() { //dynamic array of children need unique key on the root option
     var id = this.props.id,
         self = this, 
-        list = this.props.values.split(',').map(function(value) {
+        list = this.props.values.split(',').map(function(value, i) {
       return (
-        <option>
+        <option key={"dropdown-" + value}>
           {value}
         </option>
       );
@@ -183,6 +166,7 @@ ChartForm.ChartDataInput = React.createClass({
     value = value.split('\n').map(function(x) { 
       return x.split('\t');
     });
+    value[0].shift(); //removes first empty element from value[0] to create accurate labels array
     this.setState({ value: value });
   },
   render: function() {

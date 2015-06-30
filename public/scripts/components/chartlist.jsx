@@ -4,7 +4,7 @@
 
 /* 
 * Child component of ChartBox, parent component of Chart
-* Renders list to display title, author, and charts after form submit
+* Dynamically renders list to display title, author, and charts after form submit
 */
 var ChartList = React.createClass({
   render: function() {
@@ -24,7 +24,7 @@ var ChartList = React.createClass({
 });
 
 /*
-* Chart is a subcomponent that depends on data passed in from Chartlist
+* Chart is a subcomponent of ChartList that depends on data passed in from Chartlist (props)
 */
 ChartList.Chart = React.createClass({
   componentDidMount: function() {
@@ -34,7 +34,7 @@ ChartList.Chart = React.createClass({
     if (search.length > 0) {
       $chart = $(search);
       ChartistHtml.config.baseClass = 'cts';
-      cm = new ChartistHtml.ChartManager($chart);
+      cm = new ChartistHtml.ChartManager($chart); //use ChartistHtml lib to draw charts
       cm.setData();
       cm.render();
     }

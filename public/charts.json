@@ -5,14 +5,16 @@
         "chart": "<div class='cts' data-type='line' data-series-format='currency' data-labels-format='year'><ul class='hidden'><li class='cts__labels'>1994|1995|1996</li><li class='cts__series' data-name='Federal'>3605|5475|4820</li><li class='cts__series' data-name='State'>2550|2905|3290</li></ul></div>"
     },
     {
-        "author": "",
-        "title": "",
+        "author": "jessica",
+        "title": "Sample chart data object logged out",
         "chart_type": "Bar",
-        "data_labels_format": "",
-        "data_series_format": "",
+        "chart_subtypes": [
+            "Horizontal"
+        ],
+        "data_labels_format": "Year",
+        "data_series_format": "Currency ($)",
         "chart_data": [
             [
-                "",
                 "2010",
                 "2011",
                 "2012"

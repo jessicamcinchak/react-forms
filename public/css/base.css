@@ -41,7 +41,6 @@ code {
   font-size: 12px;
   background-color: #f8f8f8;
   border: 1px solid #ddd;
-  border-radius: 3px;
   margin: 0 2px;
   padding: 0px 5px;
 }
@@ -83,17 +82,17 @@ ul {
 
 fieldset {
   border: 1px dashed #443094;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: white;
   margin: 10px auto 10px auto;
   padding: 5px;
+  width: 98%;
 }
 
 .chartForm {
   border: 1.5px solid #443094;
-  border-radius: 15px;
   background: #f7f7f7;
-  padding: 15px;  
+  padding: 5px 15px;  
   margin-bottom: 15px;
 }
 
@@ -119,7 +118,6 @@ input {
 
 input[type="text"] {
   border: 1px dashed #443094;
-  border-radius: 5px;
   padding-left: 5px;
 }
 
@@ -127,12 +125,14 @@ input[type="radio"],
 input[type="checkbox"] {
   display: inline-block;
   position: relative;
-  height: 20px;
+  height: 13px;
+  width: auto;
+  margin: auto;
 }
 
 select {
   display: inline-block;
-  width: 60%;
+  width: 84%;
   margin: auto;
 }
 
@@ -141,19 +141,24 @@ textarea {
   height: 150px;
   width: 98%;
   border: 1px dashed #443094;
-  border-radius: 5px;
   margin: auto;
   padding-left: 5px;
 }
 
 input[type="submit"] {
-  width: 30%;
+  width: 50%;
   display: block;
-  margin: auto;
-  font-size: 14px;
+  margin: 20px auto;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 100;
   color: #fff;
   border: 1px solid #443094;
-  border-radius: 5px;
   background-color: #443094;
-  margin-top: 15px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  opacity: .6;
 }

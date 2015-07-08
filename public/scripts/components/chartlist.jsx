@@ -38,13 +38,13 @@ ChartList.Chart = React.createClass({
       cm.setData();
       cm.render();
     }
+    $('h2').hallo({ //h2 is in the DOM within this method, not before it
+      editable: true
+    });
   },
   render: function() {
     var data = this.props.children;
     data.chart = data.chart || '<p></p>';
-    $('h2').hallo({ //introduce hallo; todo: make title in list editable (this works if run in console, but not here)
-      editable: true
-    });
     return (
       <div className="chart">
         <h2 className="chartTitle">
